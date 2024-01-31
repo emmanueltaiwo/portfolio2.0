@@ -1,12 +1,12 @@
 type SkillsList = {
-  id: number;
-  mame: string;
+  id: string;
+  name: string;
   logo: string;
-  isDark: boolean;
+  isDark: "false" | "true";
 };
 
 type ProjectList = {
-  id: number;
+  id: string;
   title: string;
   description: string;
   coverImg: string;
@@ -19,7 +19,11 @@ type ProjectList = {
 };
 
 type Features = {
-  id: number;
+  id: string;
   title: string;
   description: string;
+};
+
+type AuthResponse = {
+  isLoggedIn: boolean;
 };

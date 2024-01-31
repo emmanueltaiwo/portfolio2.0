@@ -10,11 +10,11 @@ const HeroSection = () => {
         <h3 className="text-blue-600 font-bold text-[35px] sm:text-[40px] md:text-[80px] lg:text-[50px]">
           HI!
         </h3>
-        <h4 className="text-[20px] sm:text-[35px] md:text-[50px] lg:text-[30px] font-[450] mt-2">
+        <h4 className="text-[22px] sm:text-[35px] md:text-[50px] lg:text-[30px] font-[450] mt-2">
           My name is{" "}
           <span className="text-blue-500 font-[600]">{FULL_NAME}</span>
         </h4>
-        <p className="text-black dark:text-white text-[14px] sm:text-[20px] md:text-[25px] lg:text-[15px] font-[300] w-[85%] sm:w-[80%] md:w-[550px] lg:w-[480px]">
+        <p className="text-black dark:text-white text-[14px] sm:text-[20px] md:text-[25px] lg:text-[15px] font-[300] w-[90%] sm:w-[80%] md:w-[550px] lg:w-[480px]">
           I&apos;m a software engineer turning creative ideas into functioning
           applications. I use code to solve problems efficiently.
         </p>

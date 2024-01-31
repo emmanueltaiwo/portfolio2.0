@@ -1,8 +1,24 @@
-import { SKILLS_LIST } from "@/constants";
+"use client";
+
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import React from "react";
+import { fetchAllSkils } from "@/services/skills";
 
 const SkillsSection = () => {
+  const [skills, setSkills] = useState<SkillsList[]>([]);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const response = await fetchAllSkils();
+        setSkills(response);
+      } catch (error) {
+        throw new Error();
+      }
+    };
+    fetchSkills();
+  }, []);
+
   return (
     <section
       id="skills"
@@ -16,24 +32,26 @@ const SkillsSection = () => {
         and programming languages to create innovative solutions.
       </p>
 
-      <ul className="w-full md:w-[60%] mx-auto place-items-center grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-10 md:gap-10 lg:gap-6 xl:gap-3 mt-5">
-        {SKILLS_LIST.map((item) => (
-          <li
-            key={item.id}
-            className="w-[150px] h-[150px] bg-gray-300 hover:bg-gray-400 dark:bg-[#1d1d1d] hover:dark:bg-[#1a1a1a] p-3 rounded-md flex flex-col gap-5 items-center justify-center cursor-pointer transition-all duration-500"
-          >
-            <Image
-              src={item.logo}
-              width={50}
-              height={50}
-              alt={item.name}
-              className={`${item.isDark && "dark:invert"}`}
-            />
-            <p className="text-black dark:text-white font-[500] text-[16px]">
-              {item.name}
-            </p>
-          </li>
-        ))}
+      <ul className="w-[90%] sm:w-full md:w-[60%] mx-auto place-items-center grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 sm:gap-10 md:gap-10 lg:gap-6 xl:gap-3 mt-5">
+        {skills
+          .sort((a, b) => parseInt(a.id) - parseInt(b.id))
+          .map((item) => (
+            <li
+              key={item.id}
+              className="w-[150px] h-[150px] bg-gray-300 hover:bg-gray-400 dark:bg-[#1d1d1d] hover:dark:bg-[#1a1a1a] p-3 rounded-md flex flex-col gap-5 items-center justify-center cursor-pointer transition-all duration-500"
+            >
+              <Image
+                src={item.logo}
+                width={50}
+                height={50}
+                alt={item.name}
+                className={`${item.isDark === "true" && "dark:invert"}`}
+              />
+              <p className="text-black dark:text-white font-[500] text-[16px]">
+                {item.name}
+              </p>
+            </li>
+          ))}
       </ul>
     </section>
   );

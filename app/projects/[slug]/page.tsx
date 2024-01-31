@@ -1,19 +1,28 @@
 "use client";
 
 import React, { useState, useLayoutEffect } from "react";
-import { PROJECTS_LIST } from "@/constants";
 import Image from "next/image";
 import TerminalIcon from "@mui/icons-material/Terminal";
+import { fetchAllProjects } from "@/services/projects";
 
 const Project = ({ params }: { params: { slug: string } }) => {
   const [project, setProject] = useState<ProjectList[]>([]);
 
   useLayoutEffect(() => {
-    const currentProject = PROJECTS_LIST.filter(
-      (project) => project.id.toString() === params.slug
-    );
+    const fetchProjects = async () => {
+      try {
+        const response = await fetchAllProjects();
+        const currentProject = response.filter(
+          (project) => project.id.toString() === params.slug
+        );
 
-    setProject(currentProject);
+        setProject(currentProject)
+      } catch (error) {
+        throw new Error();
+      }
+    };
+
+    fetchProjects();
   }, [params]);
 
   return (
@@ -21,7 +30,7 @@ const Project = ({ params }: { params: { slug: string } }) => {
       {project.map((project) => (
         <div
           key={project.id}
-          className="ml-[10px] sm:ml-[20px] md:ml-[50px] lg:ml-[100px] xl:ml-[200px] flex flex-col gap-5"
+          className="mx-5 md:mx-0 md:ml-[50px] lg:ml-[100px] xl:ml-[200px] flex flex-col gap-5"
         >
           <h1 className="text-[25px] md:text-[50px] text-black dark:text-white font-[600]">
             {project.title}
@@ -31,14 +40,14 @@ const Project = ({ params }: { params: { slug: string } }) => {
             width={1000}
             height={1000}
             alt={project.title}
-            className="rounded-lg w-[90%] xl:w-[80%]"
+            className="rounded-lg w-full md:w-[90%] xl:w-[80%]"
           />
 
           <h2 className="text-blue-800 dark:text-white text-[30px] font-[500] border-b-2 border-blue-800 px-5 pb-2 w-fit mt-5">
             FEATURES
           </h2>
 
-          <ul className="w-[90%] xl:w-[80%] h-full grid grid-cols-1 md:grid-cols-2 gap-5">
+          <ul className="w-full md:w-[90%] xl:w-[80%] h-full grid grid-cols-1 md:grid-cols-2 gap-5">
             {project.features.map((feature) => (
               <li
                 key={feature.id}
@@ -58,17 +67,17 @@ const Project = ({ params }: { params: { slug: string } }) => {
             ))}
           </ul>
 
-          <h2 className="text-blue-800 dark:text-white text-[30px] font-[500] border-b-2 border-blue-800 px-5 pb-2 w-fit mt-5">
+          <h2 className="text-blue-800 dark:text-white text-[20px] md:text-[30px] font-[500] border-b-2 border-blue-800 px-5 pb-2 w-fit mt-5">
             CHALLENGES & SOLUTIONS
           </h2>
-          <p className="text-black dark:text-white font-[300] text-[14px] w-[90%] xl:w-[80%]">
+          <p className="text-black dark:text-white font-[300] text-[14px] w-full md:w-[90%] xl:w-[80%]">
             {project.challengesAndSolutions}
           </p>
 
-          <h2 className="text-blue-800 dark:text-white text-[30px] font-[500] border-b-2 border-blue-800 px-5 pb-2 w-fit mt-5">
+          <h2 className="text-blue-800 dark:text-white text-[20px] md:text-[30px] font-[500] border-b-2 border-blue-800 px-5 pb-2 w-fit mt-5">
             RESULT
           </h2>
-          <p className="text-black dark:text-white font-[300] text-[14px] w-[90%] xl:w-[80%]">
+          <p className="text-black dark:text-white font-[300] text-[14px] w-full md:w-[90%] xl:w-[80%]">
             {project.result}
           </p>
         </div>
