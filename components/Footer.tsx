@@ -6,16 +6,21 @@ import XIcon from "@mui/icons-material/X";
 import EmailIcon from "@mui/icons-material/Email";
 
 const Footer = () => {
+  const [firstName, lastName] = FULL_NAME.split(" ");
+
   return (
-    <footer id="contact" className="w-full mt-auto bg-white dark:bg-black py-10 flex flex-col md:flex-row justify-between">
+    <footer
+      id="contact"
+      className="w-full mt-auto bg-white dark:bg-black py-10 flex flex-col md:flex-row justify-between"
+    >
       <div className="flex flex-col gap-3 ml-[10px] sm:ml-[20px] md:ml-[50px] lg:ml-[100px] xl:ml-[200px]">
         <h1 className="text-[25px] font-[600] text-black dark:text-white uppercase">
-          <span className="text-blue-500">{FULL_NAME.split(" ")[0]} </span>
-          {FULL_NAME.split(" ")[1]}
+          <span className="text-blue-500">{firstName} </span>
+          {lastName}
         </h1>
 
         <h3 className="text-blue-600 text-[15px] font-[400]">
-          FULLSTACK DEVELOPER
+          SOFTWARE ENGINEER
         </h3>
 
         <h5 className="mt-10 text-black dark:text-white text-[15px] font-[500]">
