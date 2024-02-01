@@ -32,7 +32,7 @@ const AboutSection = () => {
           holistic solutions.
           <br />
           <br />
-          🎨 When I&apos;m not immersed in code, you&apos;ll find me exploring
+          🎨 When I&apos;m not coding, you&apos;ll find me exploring
           the latest UI trends, enjoying a cup of coffee and playing football.
           Let&apos;s connect, collaborate, and turn your aspirations into a
           tangible reality!
