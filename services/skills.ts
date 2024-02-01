@@ -41,12 +41,15 @@ export const updateExistingSkill = async (
 ): Promise<boolean> => {
   try {
     const skillRef = doc(db, "skills", skillId);
-    await updateDoc(skillRef, {
+
+    const updatedSkill: SkillsList = {
       id: newValue.id,
       name: newValue.name,
       logo: newValue.logo,
       isDark: newValue.isDark,
-    });
+    };
+    await updateDoc(skillRef, updatedSkill);
+
     return true;
   } catch (error) {
     throw new Error();

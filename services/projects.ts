@@ -41,7 +41,8 @@ export const updateExistingProject = async (
 ): Promise<boolean> => {
   try {
     const projectRef = doc(db, "projects", projectId);
-    await updateDoc(projectRef, {
+
+    const updatedProject: ProjectList = {
       id: newValue.id,
       title: newValue.title,
       description: newValue.description,
@@ -52,7 +53,8 @@ export const updateExistingProject = async (
       features: newValue.features,
       challengesAndSolutions: newValue.challengesAndSolutions,
       result: newValue.result,
-    });
+    };
+    await updateDoc(projectRef, updatedProject);
 
     return true;
   } catch (error) {
