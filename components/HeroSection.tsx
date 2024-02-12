@@ -15,8 +15,7 @@ const HeroSection = () => {
           <span className="text-blue-500 font-[600]">{FULL_NAME}</span>
         </h4>
         <p className="text-black dark:text-white text-[14px] sm:text-[20px] md:text-[25px] lg:text-[15px] font-[300] w-[90%] sm:w-[80%] md:w-[550px] lg:w-[480px]">
-          I&apos;m a software engineer turning creative ideas into functioning
-          applications. I use code to solve problems efficiently.
+          I&apos;m a software engineer specialising in building software solutions. I use code to solve problems efficiently.
         </p>
         <a
           href="/assets/documents/Taiwo Emmanuel Resume.pdf"
