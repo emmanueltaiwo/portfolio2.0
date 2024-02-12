@@ -24,7 +24,7 @@ const ProjectsSection = () => {
     const fetchProjects = async () => {
       try {
         const response = await fetchAllProjects();
-        console.log(response)
+        console.log(response);
         setProjects(response);
       } catch (error) {
         throw new Error();
@@ -41,7 +41,7 @@ const ProjectsSection = () => {
       <h2 className="text-blue-800 dark:text-white text-[30px] font-[500] border-b-2 border-blue-800 px-5 pb-2">
         PROJECTS
       </h2>
-      
+
       <FlipMove className="w-full mx-auto flex flex-col lg:flex-row gap-10 justify-center mt-5 transition-all duration-500">
         {projects
           .sort((a, b) => parseInt(a.id) - parseInt(b.id))
