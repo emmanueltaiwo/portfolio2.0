@@ -16,7 +16,7 @@ const Project = ({ params }: { params: { slug: string } }) => {
           (project) => project.id.toString() === params.slug
         );
 
-        setProject(currentProject)
+        setProject(currentProject);
       } catch (error) {
         throw new Error();
       }
@@ -51,7 +51,7 @@ const Project = ({ params }: { params: { slug: string } }) => {
             {project.features.map((feature) => (
               <li
                 key={feature.id}
-                className="w-full h-[150px] bg-gray-300 hover:bg-gray-400 dark:bg-[#1d1d1d] hover:dark:bg-[#1a1a1a] p-3 rounded-md flex gap-5 items-center justify-center cursor-pointer transition-all duration-500"
+                className="w-full h-fit py-5 bg-gray-300 hover:bg-gray-400 dark:bg-[#1d1d1d] hover:dark:bg-[#1a1a1a] p-3 rounded-md flex gap-5 items-center justify-center cursor-pointer transition-all duration-500"
               >
                 <TerminalIcon className="mt-1" />
 
