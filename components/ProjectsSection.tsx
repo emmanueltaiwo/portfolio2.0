@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import CircleRoundedIcon from "@mui/icons-material/CircleRounded";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { Link } from "@mui/material";
 import Image from "next/image";
 import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
@@ -58,16 +59,27 @@ const ProjectsSection = () => {
                 alt={item.title}
                 className="lg:w-[450px] xl:w-[500px] rounded-lg w-full"
               />
-              <Link
-                href={`/projects/${item.id}`}
-                className="flex gap-3 items-center no-underline"
-              >
-                <h3 className="text-[20px] font-[700] dark:text-white text-black">
-                  {item.title}
-                </h3>
 
-                <OpenInNewRoundedIcon className="dark:text-white text-black" />
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link
+                  href={`/projects/${item.id}`}
+                  className="flex gap-3 items-center no-underline"
+                >
+                  <h3 className="text-[20px] font-[700] dark:text-white text-black">
+                    {item.title}
+                  </h3>
+                </Link>
+
+                <div className="h-5 border-l-[1px] ml-2 border-black dark:border-white" />
+
+                <a className="ml-2" href={item.githubRepo} target="_blank">
+                  <GitHubIcon className="dark:text-white text-black" />
+                </a>
+
+                <a href={item.liveLink} target="_blank">
+                  <OpenInNewRoundedIcon className="dark:text-white text-black" />
+                </a>
+              </div>
 
               <p className="text-[13px] font-[300] dark:text-white text-black lg:w-[430px] xl:w-[480px]">
                 {item.description}

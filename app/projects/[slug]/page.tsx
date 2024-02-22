@@ -4,6 +4,8 @@ import React, { useState, useLayoutEffect } from "react";
 import Image from "next/image";
 import TerminalIcon from "@mui/icons-material/Terminal";
 import { fetchAllProjects } from "@/services/projects";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import OpenInNewRoundedIcon from "@mui/icons-material/OpenInNewRounded";
 
 const Project = ({ params }: { params: { slug: string } }) => {
   const [project, setProject] = useState<ProjectList[]>([]);
@@ -32,9 +34,22 @@ const Project = ({ params }: { params: { slug: string } }) => {
           key={project.id}
           className="mx-5 md:mx-0 md:ml-[50px] lg:ml-[100px] xl:ml-[200px] flex flex-col gap-5"
         >
-          <h1 className="text-[25px] md:text-[50px] text-black dark:text-white font-[600]">
-            {project.title}
-          </h1>
+          <div className="flex items-center gap-2">
+            <h1 className="text-[25px] md:text-[50px] text-black dark:text-white font-[600]">
+              {project.title}
+            </h1>
+
+            <div className="h-5 border-l-[1px] ml-2 border-black dark:border-white" />
+
+            <a className="ml-2" href={project.githubRepo} target="_blank">
+              <GitHubIcon className="dark:text-white text-black" />
+            </a>
+
+            <a href={project.liveLink} target="_blank">
+              <OpenInNewRoundedIcon className="dark:text-white text-black" />
+            </a>
+          </div>
+
           <Image
             src={project.coverImg}
             width={1000}

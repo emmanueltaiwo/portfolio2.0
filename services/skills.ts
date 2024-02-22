@@ -8,6 +8,7 @@ import {
   setDoc,
   updateDoc,
   deleteDoc,
+  getDoc,
 } from "firebase/firestore";
 
 export const fetchAllSkils = async (): Promise<SkillsList[]> => {
@@ -62,6 +63,27 @@ export const deleteExistingSkill = async (
   try {
     await deleteDoc(doc(db, "skills", skillId));
     return true;
+  } catch (error) {
+    throw new Error();
+  }
+};
+
+export const getResume = async (): Promise<string> => {
+  try {
+    let resumeLink: string = "";
+
+    const docRef = doc(db, "admin_access", "resumeLink");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const link = docSnap.data().toString();
+      resumeLink = link;
+    } else {
+      resumeLink =
+        "https://drive.google.com/file/d/1yFfxKh5DuyBgf0u-HT6uujFqTvLw7-rA/view?usp=sharing";
+    }
+
+    return resumeLink;
   } catch (error) {
     throw new Error();
   }

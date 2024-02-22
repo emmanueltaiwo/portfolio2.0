@@ -5,7 +5,6 @@ import Logo from "./Logo";
 import Link from "next/link";
 import { ModeToggle } from "./ToggleTheme";
 import { NAV_LINKS } from "@/constants";
-import { usePathname } from "next/navigation";
 import WindowRoundedIcon from "@mui/icons-material/WindowRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
