@@ -3,7 +3,7 @@
 import { FULL_NAME } from "@/constants";
 import Image from "next/image";
 
-const HeroSection = () => {
+const HeroSection = ({ resumeLink }: { resumeLink: string }) => {
   return (
     <section className="bg-gray-100 dark:bg-black h-[90vh] xl:pb-24 lg:pb-[200px] flex-1 flex flex-col lg:flex-row justify-between lg:items-center xl:items-start gap-5">
       <div className="mt-[150px] ml-[10px] sm:ml-[20px] md:ml-[50px] lg:ml-[100px] xl:ml-[200px] flex flex-col md:gap-2 gap-3">
@@ -15,10 +15,11 @@ const HeroSection = () => {
           <span className="text-blue-500 font-[600]">{FULL_NAME}</span>
         </h4>
         <p className="text-black dark:text-white text-[14px] sm:text-[20px] md:text-[25px] lg:text-[15px] font-[300] w-[90%] sm:w-[80%] md:w-[550px] lg:w-[480px]">
-          I&apos;m a software engineer specialising in building software solutions. I use code to solve problems efficiently.
+          I&apos;m a software engineer specialising in building software
+          solutions. I use code to solve problems efficiently.
         </p>
         <a
-          href="/assets/documents/Taiwo Emmanuel Resume.pdf"
+          href={resumeLink}
           target="_blank"
           className="w-fit h-fit px-14 sm:px-20 lg:px-10 py-3 sm:py-4 md:py-5 lg:py-3 rounded-md bg-blue-800 hover:bg-blue-900 text-white text-center mt-5"
         >
