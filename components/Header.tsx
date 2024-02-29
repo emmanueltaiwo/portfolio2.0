@@ -63,12 +63,12 @@ const Header = () => {
 
   return (
     <header className="w-full z-50 sticky top-0 h-[4.5rem] bg-white dark:bg-black shadow-md dark:shadow-gray-900 flex justify-between items-center">
-      <div
+      <button
         className="ml-[10px] sm:ml-[20px] md:ml-[50px] lg:ml-[100px] xl:ml-[200px]"
         onClick={() => dispatch(setPathname("/"))}
       >
         <Logo />
-      </div>
+      </button>
 
       <ul className="hidden md:mr-[50px] lg:mr-[100px] xl:mr-[200px] md:flex items-center gap-5 lg:gap-10">
         {NAV_LINKS.map((link) => (

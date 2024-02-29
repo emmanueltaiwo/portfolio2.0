@@ -4,6 +4,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import XIcon from "@mui/icons-material/X";
 import EmailIcon from "@mui/icons-material/Email";
+import BookIcon from '@mui/icons-material/Book';
 
 const Footer = () => {
   const [firstName, lastName] = FULL_NAME.split(" ");
@@ -48,6 +49,13 @@ const Footer = () => {
             className="text-black dark:text-white border-2 border-blue-800 hover:bg-blue-800 p-[8px] rounded-full "
           >
             <XIcon fontSize="medium" />
+          </a>
+          <a
+            href="https://taiwoemmanuel.hashnode.dev/"
+            target="_blank"
+            className="text-black dark:text-white border-2 border-blue-800 hover:bg-blue-800 p-[8px] rounded-full "
+          >
+            <BookIcon fontSize="medium" />
           </a>
         </div>
       </div>
