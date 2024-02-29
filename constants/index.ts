@@ -21,6 +21,11 @@ export const NAV_LINKS = [
     title: "Contact",
     route: "/#contact",
   },
+  {
+    id: 5,
+    title: "Blog",
+    route: "https://taiwoemmanuel.hashnode.dev/",
+  },
 ];
 
 export const SKILLS_LIST = [
