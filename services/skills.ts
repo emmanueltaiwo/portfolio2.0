@@ -70,20 +70,16 @@ export const deleteExistingSkill = async (
 
 export const getResume = async (): Promise<string> => {
   try {
-    let resumeLink: string = "";
-
-    const docRef = doc(db, "admin_access", "resumeLink");
+    const docRef = doc(db, "admin", "admin_access");
     const docSnap = await getDoc(docRef);
 
-    if (docSnap.exists()) {
-      const link = docSnap.data().toString();
-      resumeLink = link;
-    } else {
-      resumeLink =
-        "https://drive.google.com/file/d/1yFfxKh5DuyBgf0u-HT6uujFqTvLw7-rA/view?usp=sharing";
+    if (!docSnap.exists()) {
+      return "https://www.linkedin.com/in/emmanueloluwafunso/";
     }
 
-    return resumeLink;
+    const link = docSnap.data().resumeLink as string;
+
+    return link;
   } catch (error) {
     throw new Error();
   }
