@@ -1,9 +1,24 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { FULL_NAME } from "@/constants";
 import Image from "next/image";
+import { getResume } from "@/services/skills";
 
-const HeroSection = ({ resumeLink }: { resumeLink: string }) => {
+const HeroSection = () => {
+  const [resumeLink, setResumeLink] = useState(
+    "https://drive.google.com/file/d/13kTAZ7ZrOXqJ3fxABKKFUbEAo8YrnIDa/view?usp=sharing"
+  );
+
+  useEffect(() => {
+    const fetchResume = async () => {
+      const resume = await getResume();
+      setResumeLink(resume);
+    };
+
+    fetchResume();
+  }, []);
+
   return (
     <section className="bg-gray-100 dark:bg-black h-[90vh] xl:pb-24 lg:pb-[200px] flex-1 flex flex-col lg:flex-row justify-between lg:items-center xl:items-start gap-5">
       <div className="mt-[150px] ml-[10px] sm:ml-[20px] md:ml-[50px] lg:ml-[100px] xl:ml-[200px] flex flex-col md:gap-2 gap-3">

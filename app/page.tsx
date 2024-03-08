@@ -2,13 +2,11 @@ import AboutSection from "@/components/AboutSection";
 import HeroSection from "@/components/HeroSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import SkillsSection from "@/components/SkillsSection";
-import { getResume } from "@/services/skills";
 
-export default async function Home() {
-  const resumeLink = await getResume();
+export default function Home() {
   return (
     <main>
-      <HeroSection resumeLink={resumeLink} />
+      <HeroSection />
       <SkillsSection />
       <AboutSection />
       <ProjectsSection />
