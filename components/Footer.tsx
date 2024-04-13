@@ -30,7 +30,7 @@ const Footer = () => {
 
         <div className="flex items-center gap-3">
           <a
-            href="https://github.com/realemmanuel"
+            href="https://github.com/emmanueltaiwo"
             target="_blank"
             className="text-black dark:text-white border-2 border-blue-800 hover:bg-blue-800 p-[8px] rounded-full "
           >
