@@ -17,10 +17,7 @@ const MobileHeader = () => {
     <div className="flex md:hidden">
       {!isOpen && (
         <div className="mr-[10px] sm:mr-[20px] flex items-center gap-5">
-          <button
-            className="text-blue-800 dark:text-blue-500"
-            onClick={() => setIsOpen(true)}
-          >
+          <button className="text-white" onClick={() => setIsOpen(true)}>
             <WindowRoundedIcon />
           </button>
 
@@ -34,7 +31,7 @@ const MobileHeader = () => {
             <Logo />
           </div>
           <button
-            className="text-blue-800 dark:text-blue-500 absolute right-0 mr-[10px] sm:mr-[20px] mt-[1.25rem] border-[2px] p-[2px] rounded-full flex items-center justify-center"
+            className="text-white absolute right-0 mr-[10px] sm:mr-[20px] mt-[1.25rem] border-[2px] p-[2px] rounded-full flex items-center justify-center"
             onClick={() => setIsOpen(false)}
           >
             <CloseRoundedIcon />
@@ -62,32 +59,39 @@ const Header = () => {
   const pathname = useAppSelector((state) => state.pathname.pathname);
 
   return (
-    <header className="w-full z-50 sticky top-0 h-[4.5rem] bg-white dark:bg-black shadow-md dark:shadow-gray-900 flex justify-between items-center">
-      <button
-        className="ml-[10px] sm:ml-[20px] md:ml-[50px] lg:ml-[100px] xl:ml-[200px]"
-        onClick={() => dispatch(setPathname("/"))}
-      >
-        <Logo />
-      </button>
+    <header className="w-full z-50 fixed top-0 h-[10vh] bg-white dark:bg-black flex justify-between items-center">
+      <div className="w-full flex items-center gap-5 max-w-7xl mx-auto justify-between">
+        <button className="ml-5" onClick={() => dispatch(setPathname("/"))}>
+          <Logo />
+        </button>
 
-      <ul className="hidden md:mr-[50px] lg:mr-[100px] xl:mr-[200px] md:flex items-center gap-5 lg:gap-10">
-        {NAV_LINKS.map((link) => (
-          <Link
-            key={link.id}
-            href={link.route}
-            className={`dark:text-white text-[14px] font-[400] p-2 text-center mx-auto w-fit transition-all duration-200 rounded-[2px] ${
-              pathname === link.route && "border-b-2 border-blue-800"
-            }`}
-            onClick={() => dispatch(setPathname(link.route))}
+        <ul className="hidden md:flex items-center gap-5 lg:gap-10">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.id}
+              href={link.route}
+              className={`dark:text-white text-[14px] dark:hover:text-[#a2a2a2] font-[300] p-2 text-center mx-auto w-fit transition-all duration-200 rounded-[2px] ${
+                pathname === link.route && "border-b-2 border-black dark:border-white"
+              }`}
+              onClick={() => dispatch(setPathname(link.route))}
+            >
+              {link.title}
+            </Link>
+          ))}
+        </ul>
+
+        <div className="hidden md:flex items-center gap-5 mr-5">
+          <a
+            href="mailto:devemmanuel1@gmail.com"
+            className="px-5 py-2 border-[1px] dark:border-white hover:bg-[#a2a2a23b] border-black rounded-full"
           >
-            {link.title}
-          </Link>
-        ))}
+            Contact Me
+          </a>
+          <ModeToggle />
+        </div>
 
-        <ModeToggle />
-      </ul>
-
-      <MobileHeader />
+        <MobileHeader />
+      </div>
     </header>
   );
 };

@@ -27,3 +27,8 @@ type Features = {
 type AuthResponse = {
   isLoggedIn: boolean;
 };
+
+type StateResponse = {
+  status: "SUCCESS" | "ERROR";
+  message: string;
+};

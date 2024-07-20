@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 
 export const handleLoginUser = async (
   formData: FormData,
-  prevState: AuthResponse
+  prevState: StateResponse,
 ): Promise<AuthResponse> => {
   try {
     if (!formData) return { isLoggedIn: false };

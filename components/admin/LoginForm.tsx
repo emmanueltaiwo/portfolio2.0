@@ -5,14 +5,18 @@ import { useFormState } from "react-dom";
 import { handleLoginUser } from "@/services/auth";
 import { useRouter } from "next/navigation";
 
-const initialState = {
-  isLoggedIn: false,
+const initialState: StateResponse = {
+  message: "",
+  status: "ERROR",
 };
 
 const LoginForm = () => {
   const router = useRouter();
 
-  const loginUser = async (prevState: AuthResponse, formData: FormData) => {
+  const loginUser = async (
+    prevState: StateResponse,
+    formData: FormData
+  ): Promise<StateResponse> => {
     try {
       const login = await handleLoginUser(formData, prevState);
 
@@ -20,8 +24,11 @@ const LoginForm = () => {
         router.push("/");
       }
 
-      router.push("/admin");
-      return login;
+      window.location.reload();
+      return {
+        status: login.isLoggedIn ? "SUCCESS" : "ERROR",
+        message: login.isLoggedIn ? "You've logged in succesfully" : "Access denied",
+      };
     } catch (error) {
       throw new Error();
     }
@@ -32,7 +39,7 @@ const LoginForm = () => {
   return (
     <form
       action={formAction}
-      className="flex flex-col gap-5 w-[95%] lg:w-[50%] mx-auto bg-gray-200 dark:bg-[#1c1c1c] my-auto p-5 md:p-10 rounded-lg"
+      className="flex flex-col gap-5 w-[95%] lg:w-[50%] mt-[20vh] mx-auto bg-gray-200 dark:bg-[#1c1c1c] my-auto p-5 md:p-10 rounded-lg"
     >
       <h1 className="text-black dark:text-white text-[30px] font-[600]">
         Login
@@ -93,12 +100,10 @@ const LoginForm = () => {
         Login
       </button>
 
-      {state.isLoggedIn ? (
-        <p className="text-green-600 text-[17px] font-[400]">
-          You&apos;ve Logged in Successfully
-        </p>
+      {state.status === "SUCCESS" ? (
+        <p className="text-green-600 text-[17px] font-[400]">{state.message}</p>
       ) : (
-        <p className="text-red-600 text-[17px] font-[400]">Access Denied</p>
+        <p className="text-red-600 text-[17px] font-[400]">{state.message}</p>
       )}
     </form>
   );
