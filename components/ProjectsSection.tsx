@@ -28,7 +28,7 @@ const ProjectsSection = ({ projects }: { projects: ProjectList[] }) => {
 
         <FlipMove className="w-full mx-auto flex flex-col lg:flex-row gap-10 justify-center mt-5 transition-all duration-500">
           {projects
-            .toSorted((a, b) => parseInt(a.id) - parseInt(b.id))
+            .sort((a, b) => parseInt(a.id) - parseInt(b.id))
             .slice(batch[0], batch[1])
             .map((item) => (
               <li
