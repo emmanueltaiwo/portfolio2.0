@@ -7,7 +7,7 @@ const Logo = () => {
   return (
     <Link
       href="/"
-      className="flex items-center justify-center text-[16px] font-[500] text-blue-800 dark:text-blue-500"
+      className="flex items-center justify-center text-[20px] font-[400] text-black dark:text-white"
     >
       {FULL_NAME}
     </Link>

@@ -1,9 +1,5 @@
-"use client";
-
-import React, { useState, useEffect } from "react";
 import LoginForm from "@/components/admin/LoginForm";
 import { handleCookies, verifyAdminToken } from "@/services/auth";
-import { useRouter } from "next/navigation";
 import SkillsSection from "@/components/SkillsSection";
 import AddSkill from "../../components/admin/AddSkill";
 import UpdateSkill from "@/components/admin/UpdateSkill";
@@ -13,39 +9,24 @@ import ProjectsSection from "@/components/ProjectsSection";
 import DeleteProject from "@/components/admin/DeleteProject";
 import UpdateProject from "@/components/admin/UpdateProject";
 import { fetchAllProjects } from "@/services/projects";
+import { fetchAllSkils } from "@/services/skills";
 
-const Admin = () => {
-  const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-  const [projectsFetched, setProjectsFetched] = useState<boolean>(false);
+const Admin = async () => {
+  const projects = await fetchAllProjects();
+  const skills = await fetchAllSkils();
+  const token = await handleCookies("get", "token");
 
-  useEffect(() => {
-    const redirect = async () => {
-      try {
-        const token = await handleCookies("get", "token");
-        if (token === false || typeof token !== "string") {
-          setIsLoggedIn(false);
-          return;
-        }
+  let isLoggedIn: boolean = false;
+  if (token === false || typeof token !== "string") {
+    return <LoginForm />;
+  }
 
-        const realToken = await verifyAdminToken();
-        if (token !== realToken) {
-          setIsLoggedIn(false);
-          return;
-        }
-
-        router.push("/admin");
-        setIsLoggedIn(true);
-
-        await fetchAllProjects();
-        setProjectsFetched(true);
-      } catch (errror) {
-        throw new Error();
-      }
-    };
-
-    redirect();
-  }, [router]);
+  const realToken = await verifyAdminToken();
+  if (token !== realToken) {
+    return <LoginForm />;
+  } else {
+    isLoggedIn = true;
+  }
 
   return (
     <main
@@ -56,7 +37,7 @@ const Admin = () => {
       {!isLoggedIn ? (
         <LoginForm />
       ) : (
-        <section className="py-5">
+        <section className="py-5 mt-[10vh]">
           <h1 className="text-black dark:text-white text-[30px] font-[500] text-center py-10 underline">
             ADMIN PANEL
           </h1>
@@ -66,7 +47,7 @@ const Admin = () => {
               <UpdateSkill />
             </div>
             <DeleteSkill />
-            <SkillsSection />
+            <SkillsSection skills={skills} />
           </div>
 
           <hr className="border-2 my-10" />
@@ -77,7 +58,7 @@ const Admin = () => {
               <UpdateProject />
             </div>
             <DeleteProject />
-            {projectsFetched && <ProjectsSection />}
+            <ProjectsSection projects={projects} />
           </div>
         </section>
       )}

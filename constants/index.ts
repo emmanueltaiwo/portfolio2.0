@@ -4,25 +4,20 @@ export const NAV_LINKS = [
   {
     id: 1,
     title: "Skills",
-    route: "/#skills",
+    route: "/skills",
   },
   {
     id: 2,
     title: "About",
-    route: "/#about",
+    route: "/about",
   },
   {
     id: 3,
     title: "Projects",
-    route: "/#projects",
+    route: "/projects",
   },
   {
     id: 4,
-    title: "Contact",
-    route: "/#contact",
-  },
-  {
-    id: 5,
     title: "Blog",
     route: "https://taiwoemmanuel.hashnode.dev/",
   },
