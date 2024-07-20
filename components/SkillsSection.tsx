@@ -15,7 +15,7 @@ const SkillsSection = ({ skills }: { skills: SkillsList[] }) => {
         </p>
         <ul className="w-[90%] sm:w-full mx-auto place-items-center grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-7 gap-5 sm:gap-10 md:gap-10 lg:gap-6 xl:gap-3 mt-5">
           {skills
-            .toSorted((a, b) => parseInt(a.id) - parseInt(b.id))
+            .sort((a, b) => parseInt(a.id) - parseInt(b.id))
             .map((item) => (
               <li
                 key={item.id}
